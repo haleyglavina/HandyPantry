@@ -3,10 +3,11 @@
 # // Handy Pantry User Interface  //
 # //==============================//
 
-# This program handles UI requests from the HP touch screen. 
+# This program handles UI requests from the HP touch screen, and calls on the appropriate input/retrieval function. 
 
 from foodItem_class import *
 from inputNew import *
+
 '''
 from inputNew import *
 from inputPreset import *

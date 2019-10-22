@@ -6,6 +6,7 @@
 # This program is the UI pathway to gain the user information required to insert a new food item into the Handy Pantry
 
 from foodItem_class import *
+from nonvolatile_mem import *
 
 # Input a New Food Item
 def InputNew():
@@ -40,12 +41,40 @@ def InputNew():
 	# Page 4
 	print("\n Enter expiry date: ")
 	print("YYYY: ")
-	newFood.expDate.year = int(input())
+	yr = int(input())
 	print("MM: ")
-	newFood.expDate.month = int(input())
+	mth = int(input())
 	print("DD: ")
-	newFood.expDate.day = int(input())
+	dy = int(input())
+	newFood.expDate = date(year = yr, month = mth, day = dy)
 
 
+	# Page 5
+	print("\n Plz place item in LOADING DOCK!!!!")
 
+	# Page 6
+	# newFood.img = RPi_Camera_Input
+
+	# Page 7
+	print("\n Save as preset template? Y/N : ")
+	ans = input()
+	if (ans == 'Y'):
+		newTemplate = newFood
+		# Food item templates 
+		newTemplate.newFood = timeTilExpiry(newFood)
+		templates.append(newTemplate)
+
+	#UI doesn't do anything with returned item but memory module will
 	return newFood
+
+
+
+
+
+
+
+
+
+
+
+

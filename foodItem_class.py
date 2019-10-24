@@ -10,7 +10,7 @@ from PIL import Image
 from math import floor
 
 class foodItem():
-	def __init__(self):
+	def __init__(self):a
 		self.name = ""
 		self.foodGrp = 3
 		self.expDate = None
@@ -68,19 +68,19 @@ class foodItem():
 	def addDate(dateDiff):
 		td = date.today()
 		mth = 0
-	dy = td.day + dateDiff.day
+		dy = td.day + dateDiff.day
 
-	daysInMonth = [31,29,31,30,31,30,31,31,30,31,30,31]
-	# Determine day sum, incrementing the months sum if the days are greater than a month 
-	while (dy > daysInMonth[td.month]):
-		dy = dy - daysInMonth[(td.month + mth) % 12]
-		mth +=1
+		daysInMonth = [31,29,31,30,31,30,31,31,30,31,30,31]
+		# Determine day sum, incrementing the months sum if the days are greater than a month 
+		while (dy > daysInMonth[td.month]):
+			dy = dy - daysInMonth[(td.month + mth) % 12]
+			mth +=1
 
-	# Sum months and years
-	mth = mth + td.month + dateDiff.month
-	yr = td.year + dateDiff.year + floor(mth/13)
-	if (mth > 12):
-		mth = mth % 12
+		# Sum months and years
+		mth = mth + td.month + dateDiff.month
+		yr = td.year + dateDiff.year + floor(mth/13)
+		if (mth > 12):
+			mth = mth % 12
 
 		return date(yr,mth,dy)
 

@@ -10,25 +10,26 @@ from PIL import Image
 from math import floor
 
 class foodItem():
-	def __init__(self, name, foodGrp, expDate, img):
+	def __init__(self):
+		self.name = ""
+		self.foodGrp = 3
+		self.expDate = None
+		self.img = None
 		self.inDate = date.today()
 		self.expDate = date(1, 1, 1)
-		self.prevCopy = None
+		self.templateNum = None
 
-	# Returns the array index of the previous copy for an item that was inputted by a template
-	def previousCopy(fooditem):
-		return fooditem.prevCopy
-
+	# Changes the expiry date
 	def setExpiry(fooditem,year,month,day):
 		fooditem.expDate = date(year,month,day)
 		return
 
 	# Determines how long an item has until expiry
 	def timeTilExpiry(fooditem):
-        # timeLeft = [year, month, day]
+		# timeLeft = [year, month, day]
 		timeLeft = [0, 0, 0]
 		timeLeft[2] = (fooditem.expDate - fooditem.inDate).days
-        #print("Tot days left: ", timeLeft[2])
+		#print("Tot days left: ", timeLeft[2])
 		currYear = (date.today()).year
 
 		# Determine years left until expiry
@@ -42,18 +43,18 @@ class foodItem():
 		# j is the index of the current month
 		j = (date.today()).month - 1
 
-        # Determine if expiry is at least one month in the future from the jth month. If so, increment months til expiry, and decrement days til expiry by the number of days in the jth month.
+		# Determine if expiry is at least one month in the future from the jth month. If so, increment months til expiry, and decrement days til expiry by the number of days in the jth month.
 		for i in range(12):
 			if j==12:
 				j = 0
 			if (timeLeft[2] > daysInMonth[j]):
 				timeLeft[1] += 1
-                #print("Month: ", timeLeft[1])
+				#print("Month: ", timeLeft[1])
 				if (i == 2 & (currYear % 4)):
 					timeLeft[2] = timeLeft[2] - 28
 				else:
 					timeLeft[2] = timeLeft[2] - daysInMonth[j]
-                    #print("Days after subbing a month: ", timeLeft[2])
+					#print("Days after subbing a month: ", timeLeft[2])
 			j+=1
 
 		return timeLeft
@@ -81,7 +82,7 @@ class foodItem():
 	if (mth > 12):
 		mth = mth % 12
 
-	return date(yr,mth,dy)
+		return date(yr,mth,dy)
 
 
 

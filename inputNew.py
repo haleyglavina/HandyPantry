@@ -12,8 +12,7 @@ from nonvolatile_mem import *
 def InputNew():
 
 	# Initialize new food item
-	newFood = foodItem("",0,0,None)
-	#newFood = foodItem()
+	newFood = foodItem()
 
 	# Page 2
 	print("\n Enter food name: ")

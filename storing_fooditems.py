@@ -397,6 +397,28 @@ def make_UI_inventory():
 
 
 
+#this function outputs a number which represents the total number of items stored in the food_db at the moment
+#The purpose of this is to make it easier for the UI to number of items stored in the HP 
+def make_UI_quantity():
+	quantity_stored = []
+	checked_templates = []
+
+	for item in food_db: #iterate through all stored items
+		if item['template_num']!=None and item['template_num'] not in checked_templates: #if there is a template number, then there is repeats of same item
+			template = item['template_num']
+			checked_templates.append(item['template_num'])
+
+			food = Query()
+			repeats = food_db.search(food.template_num == template) #search through all the repeats 
+			
+			quantity_stored.append(len(repeats)) #adding the item id of closest expiry date and it's quantity
+
+		elif item['template_num']==None: #if there is no other item like this, we simply add this item to the inventory
+			quantity_stored.append(1)
+
+	return sum(quantity_stored)
+
+
 #this function tells motors to remove item from certain location
 def remove_from_location(location_id):
 	#send signal to motors to get object from certain location 
